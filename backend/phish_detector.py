@@ -29,105 +29,167 @@ class PhishDetector:
         self.phishing_threshold = 65
         self.warning_threshold = 40
         self.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        self.timeout = 10  # секунд
+        self.timeout = 10
 
-        # Зменшення кількості джерел чорних списків або вибір менших за розміром
+
+
         self.blacklists = [
-            'https://raw.githubusercontent.com/mitchellkrogza/Phishing.Database/master/phishing-domains-ACTIVE.txt',
+            'https://raw.githubusercontent.com/openphish/public_feed/refs/heads/main/feed.txt',
+            'https://urlhaus.abuse.ch/downloads/text_recent/'
         ]
 
-        # Використання кешування файлів для чорного списку
-        cache_file = "blacklist_cache.txt"
-        self.blacklist_domains = self._load_blacklists_with_cache(cache_file)
 
-    def _load_blacklists_with_cache(self, cache_file, cache_ttl=86400) -> set:
-        """Завантажує чорні списки з файлу кешу або з джерел."""
+        cache_file = "blacklist_dynamic.txt"
+        self.blacklist_full_urls, self.blacklist_domains = self._load_blacklists_with_cache(cache_file)
+
+    def _load_blacklists_with_cache(self, cache_file, cache_ttl=86400) -> (set, set):
+        """
+        Завантажує чорні списки URL та доменів.
+        Повертає кортеж: (повні URL, домени)
+        """
+        full_urls = set()
         domains = set()
 
-        # Перевірка наявності та актуальності кешу
         try:
             if os.path.exists(cache_file):
-                # Перевірка часу останньої модифікації
                 file_time = os.path.getmtime(cache_file)
-                if (time.time() - file_time) < cache_ttl:  # Кеш дійсний 24 години
-                    with open(cache_file, 'r') as f:
-                        domains = set(line.strip() for line in f if line.strip())
-                    logger.info(f"Завантажено {len(domains)} доменів з кешу")
-                    return domains
+                if (time.time() - file_time) < cache_ttl:
+                    with open(cache_file, 'r', encoding='utf-8') as f:
+                        for line in f:
+                            url = line.strip()
+                            if not url:
+                                continue
+                            full_urls.add(url.lower())
+                            extracted = tldextract.extract(url)
+                            if extracted.domain and extracted.suffix:
+                                domains.add(f"{extracted.domain}.{extracted.suffix}".lower())
+                    logger.info(f"Завантажено {len(full_urls)} URL з кешу")
+                    return full_urls, domains
         except Exception as e:
-            logger.error(f"Помилка перевірки кешу: {str(e)}")
+            logger.error(f"Помилка читання кешу: {e}")
 
-        # Якщо кеш відсутній або застарілий, завантажуємо з джерел
         for url in self.blacklists:
             try:
                 response = requests.get(url, timeout=self.timeout)
                 if response.status_code == 200:
-                    new_domains = set(response.text.splitlines())
-                    domains.update(new_domains)
-                    logger.info(f"Завантажено {len(new_domains)} доменів з {url}")
+                    for line in response.text.splitlines():
+                        line = line.strip()
+                        if not line:
+                            continue
+                        full_urls.add(line.lower())
+                        extracted = tldextract.extract(line)
+                        if extracted.domain and extracted.suffix:
+                            domains.add(f"{extracted.domain}.{extracted.suffix}".lower())
+                    logger.info(f"Завантажено {len(full_urls)} URL з {url}")
             except Exception as e:
-                logger.error(f"Помилка завантаження чорного списку з {url}: {str(e)}")
+                logger.error(f"Помилка завантаження {url}: {e}")
 
-        # Зберігаємо в кеш
         try:
-            with open(cache_file, 'w') as f:
-                for domain in domains:
-                    f.write(domain + '\n')
-            logger.info(f"Збережено {len(domains)} доменів у кеш")
+            with open(cache_file, 'w', encoding='utf-8') as f:
+                for u in full_urls:
+                    f.write(u + '\n')
+            logger.info(f"Збережено {len(full_urls)} URL у кеш")
         except Exception as e:
-            logger.error(f"Помилка збереження кешу: {str(e)}")
+            logger.error(f"Помилка збереження кешу: {e}")
 
-        return domains
+        return full_urls, domains
+
+    def _extract_domain_from_line(self, line: str) -> Union[str, None]:
+        """
+        Витягує домен з рядка чорного списку.
+        Підтримує формати:
+        - просто домен
+        - URL з префіксом http(s)://
+        - CSV з датою, URL, статусом
+        """
+        # Якщо це URL (починається з http)
+        if line.startswith('http'):
+            try:
+                extracted = tldextract.extract(line)
+                if extracted.domain and extracted.suffix:
+                    return f"{extracted.domain}.{extracted.suffix}"
+            except Exception:
+                return None
+
+        # Якщо CSV (має кому)
+        if ',' in line:
+            parts = line.split(',')
+            # шукатимемо домен у другій частині (приклад для OpenPhish)
+            if len(parts) > 1:
+                possible_url = parts[1].strip()
+                try:
+                    extracted = tldextract.extract(possible_url)
+                    if extracted.domain and extracted.suffix:
+                        return f"{extracted.domain}.{extracted.suffix}"
+                except Exception:
+                    return None
+
+        # Якщо це просто домен
+        domain_pattern = re.compile(r'^[a-z0-9.-]+\.[a-z]{2,}$', re.IGNORECASE)
+        if domain_pattern.match(line):
+            return line.lower()
+
+        return None
 
     def analyze_url(self, url: str) -> Dict[str, Any]:
-        """
-        Аналізує URL на наявність ознак фішингу.
-        """
-        # Очищення та нормалізація URL
         if not url.startswith(('http://', 'https://')):
             url = 'https://' + url
 
-        # Парсинг URL
         extracted = tldextract.extract(url)
-        domain = f"{extracted.domain}.{extracted.suffix}"
+        full_domain = f"{extracted.subdomain}.{extracted.domain}.{extracted.suffix}".strip('.').lower()
+        root_domain = f"{extracted.domain}.{extracted.suffix}".lower()
 
-        # Ініціалізація структури результату
         result = {
             'url': url,
-            'domain': domain,
+            'domain': full_domain,
             'checks': [],
             'is_phishing': False,
             'final_score': 0,
             'scan_time': datetime.utcnow().isoformat()
         }
 
-        # Швидка перевірка чорного списку (до запуску інших перевірок)
-        if domain in self.blacklist_domains:
+        url_lower = url.lower()
+
+        #  Перевірка повної URL-адреси
+        if url_lower in self.blacklist_full_urls:
+                result['checks'].append({
+                    'description': 'Чорний список (повна URL)',
+                    'details': 'URL точно збігається з записом у чорному списку',
+                    'result': 'fail',
+                    'score': 100,
+                    'weight': 5
+                })
+                result['final_score'] = 0
+                result['is_phishing'] = True
+                return result
+
+            #  Перевірка домену
+        if full_domain in self.blacklist_domains or root_domain in self.blacklist_domains:
             result['checks'].append({
-                'description': 'Чорний список',
-                'details': 'Домен знайдено у чорних списках фішингу',
+                'description': 'Чорний список (домен)',
+                'details': 'Домен знайдено у чорному списку',
                 'result': 'fail',
                 'score': 100,
                 'weight': 4
             })
-            result['final_score'] = 0  # Найнижчий показник безпеки
+            result['final_score'] = 0
             result['is_phishing'] = True
             return result
+
+
 
         # Запуск інших перевірок паралельно
         with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
             url_check_task = executor.submit(self.check_url_structure, url)
-            domain_check_task = executor.submit(self.check_domain_age_and_info, domain)
+            domain_check_task = executor.submit(self.check_domain_age_and_info, root_domain)
             ssl_check_task = executor.submit(self.check_ssl_certificate, url)
             content_check_task = executor.submit(self.check_page_content, url)
 
-            # Збір результатів
             result['checks'].extend(url_check_task.result())
             result['checks'].extend(domain_check_task.result())
             result['checks'].extend(ssl_check_task.result())
             result['checks'].extend(content_check_task.result())
 
-        # Обчислення фінального показника
         total_weight = sum(check.get('weight', 1) for check in result['checks'])
         weighted_score = sum(
             check.get('score', 0) * check.get('weight', 1)
@@ -137,9 +199,8 @@ class PhishDetector:
         if total_weight > 0:
             result['final_score'] = round(100 - (weighted_score / total_weight))
         else:
-            result['final_score'] = 50  # Середній показник за замовчуванням
+            result['final_score'] = 50
 
-        # Визначення, чи URL є фішинговим
         result['is_phishing'] = result['final_score'] < self.phishing_threshold
 
         return result

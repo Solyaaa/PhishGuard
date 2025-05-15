@@ -1,86 +1,70 @@
-
 import os
-from dotenv import load_dotenv
 import logging
+from dotenv import load_dotenv
 
-# Завантаження змінних середовища
 load_dotenv()
 
-# Основні налаштування
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
 PORT = int(os.getenv('PORT', 5000))
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'production')
 
-# MongoDB налаштування
-MONGO_URI = os.getenv('MONGO_URI', 'mongodb://localhost:27017/phishguard')
-MONGO_USERNAME = os.getenv('MONGO_USERNAME', '')
-MONGO_PASSWORD = os.getenv('MONGO_PASSWORD', '')
+MONGO_URI = os.getenv('MONGO_URI')
 
-# Налаштування безпеки
-SECRET_KEY = os.getenv('SECRET_KEY', 'default-insecure-key')
+SECRET_KEY = os.getenv('SECRET_KEY', 'change-me-in-production')
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
-# Налаштування API-ключів для зовнішніх сервісів
 GOOGLE_SAFE_BROWSING_API_KEY = os.getenv('GOOGLE_SAFE_BROWSING_API_KEY', '')
 PHISHTANK_API_KEY = os.getenv('PHISHTANK_API_KEY', '')
 VIRUSTOTAL_API_KEY = os.getenv('VIRUSTOTAL_API_KEY', '')
 
-# Налаштування логування
-LOG_LEVEL = getattr(logging, os.getenv('LOG_LEVEL', 'INFO'))
+LOG_LEVEL = getattr(logging, os.getenv('LOG_LEVEL', 'INFO').upper(), logging.INFO)
 LOG_DIR = os.getenv('LOG_DIR', 'logs')
 
-# Налаштування кешування
+# Кеш
 CACHE_ENABLED = os.getenv('CACHE_ENABLED', 'True').lower() in ('true', '1', 't')
 CACHE_TTL = int(os.getenv('CACHE_TTL', 3600))
+CACHE_TYPE = os.getenv('CACHE_TYPE', 'redis')
+CACHE_REDIS_URL = os.getenv('CACHE_REDIS_URL', 'redis://localhost:6379/0')
 
-# Налаштування обмеження запитів
+# Rate limiting
 RATE_LIMIT_ENABLED = os.getenv('RATE_LIMIT_ENABLED', 'True').lower() in ('true', '1', 't')
 RATE_LIMIT_PER_MINUTE = int(os.getenv('RATE_LIMIT_PER_MINUTE', 60))
+RATE_LIMIT_STORAGE_URL = os.getenv('RATE_LIMIT_STORAGE_URL', 'redis://localhost:6379/1')
 
-# Налаштування для виявлення фішингу
-PHISHING_THRESHOLD = 65
-WARNING_THRESHOLD = 40
+PHISHING_THRESHOLD = int(os.getenv('PHISHING_THRESHOLD', 65))
+WARNING_THRESHOLD = int(os.getenv('WARNING_THRESHOLD', 40))
 
-# Налаштування для HTTP-запитів
-REQUEST_TIMEOUT = 10
-USER_AGENT = 'PhishGuard/1.0'
+REQUEST_TIMEOUT = int(os.getenv('REQUEST_TIMEOUT', 10))
+USER_AGENT = os.getenv('USER_AGENT', 'PhishGuard/1.0')
 
-# Налаштування для чорних списків
 BLACKLISTS = [
-    'https://raw.githubusercontent.com/mitchellkrogza/Phishing.Database/master/phishing-domains-ACTIVE.txt',
-    # Додайте інші джерела чорних списків тут
+    'https://raw.githubusercontent.com/openphish/public_feed/refs/heads/main/feed.txt',
+    'https://urlhaus.abuse.ch/downloads/text_recent/'
 ]
 
+extra_blacklists = os.getenv('BLACKLISTS_EXTRA', '')
+if extra_blacklists:
+    BLACKLISTS += [url.strip() for url in extra_blacklists.split(',') if url.strip()]
 
-# Функція для налаштування логування
 def setup_logging():
-    """Налаштовує систему логування."""
-
-    # Створення директорії для логів, якщо її не існує
     if not os.path.exists(LOG_DIR):
         os.makedirs(LOG_DIR)
 
-    # Формат логування
-    log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    log_format = '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
 
-    # Налаштування логування в файл
-    file_handler = logging.FileHandler(f'{LOG_DIR}/phishguard.log')
+    file_handler = logging.FileHandler(os.path.join(LOG_DIR, 'phishguard.log'))
     file_handler.setFormatter(logging.Formatter(log_format))
 
-    # Налаштування виводу в консоль
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(logging.Formatter(log_format))
 
-    # Налаштування кореневого логера
     root_logger = logging.getLogger()
     root_logger.setLevel(LOG_LEVEL)
+    root_logger.handlers.clear()
     root_logger.addHandler(file_handler)
     root_logger.addHandler(console_handler)
 
-    # Зниження рівня логування для деяких бібліотек
     logging.getLogger('urllib3').setLevel(logging.WARNING)
     logging.getLogger('requests').setLevel(logging.WARNING)
 
     return root_logger
-
-

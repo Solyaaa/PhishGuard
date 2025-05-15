@@ -152,6 +152,36 @@ document.addEventListener('DOMContentLoaded', function() {
             checkList.appendChild(li);
         });
 
+        // 🔽 ДОДАНО: логіку кнопки "Повідомити про помилку"
+        const reportBtn = document.querySelector('.btn-report');
+        if (reportBtn) {
+            reportBtn.disabled = false;
+            reportBtn.textContent = 'Повідомити про помилку';
+            reportBtn.onclick = () => {
+                if (!confirm(`Ви впевнені, що хочете додати цей URL до чорного списку?\n${url}`)) {
+                    return;
+                }
+
+                fetch('/api/report-phishing', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: url, comment: '' })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message || 'Дякуємо! URL додано до чорного списку.');
+                    reportBtn.disabled = true;
+                    reportBtn.textContent = 'Додано до чорного списку';
+                })
+                .catch(err => {
+                    alert('Помилка надсилання повідомлення');
+                    console.error(err);
+                });
+            };
+        }
+// 🔼
+
+
         // Прокрутити до результатів
         resultsSection.scrollIntoView({ behavior: 'smooth' });
     }

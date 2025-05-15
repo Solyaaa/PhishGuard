@@ -1,0 +1,6 @@
+
+backend/blacklist_cache.txt
+backend/blacklist_dynamic.txt
+config/.env
+*.rdb
+backend/logs/

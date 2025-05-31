@@ -34,48 +34,34 @@
 
                 <div class="search-box">
                     <form id="url-form">
-                        <input type="url" id="url-input" placeholder="Введіть URL для перевірки (напр., https://example.com)" required>
-                        <button type="submit">Перевірити <i class="fas fa-search"></i></button>
+                        <input type="url" id="url-input" placeholder="Введіть URL для перевірки, наприклад: https://example.com" required>
+                        <button type="submit" disabled><i class="fas fa-search"></i> Перевірити</button>
                     </form>
                 </div>
-
-                <div class="recent-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">10,543</span>
-                        <span class="stat-label">Перевірених сайтів</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">2,187</span>
-                        <span class="stat-label">Виявлено фішингу</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">90.0%</span>
-                        <span class="stat-label">Точність</span>
-                    </div>
-                </div>
             </div>
+            <div class="recent-stats">
+    <div class="stat-item">
+        <span class="stat-number" id="total-scans">10,543</span> <span class="stat-label">Перевірених сайтів</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number" id="phishing-detected">2,187</span> <span class="stat-label">Виявлено фішингу</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number" id="detection-rate">90.0%</span> <span class="stat-label">Точність</span>
+    </div>
+</div>
         </div>
     </section>
 
-    <section class="results hidden" id="results-section">
-        <div class="container">
-            <h2>Результати перевірки</h2>
-
-            <div class="result-card" id="result-card">
-                <div class="result-header">
-                    <h3 id="scanned-url">https://example.com</h3>
-                    <div class="score-badge" id="safety-score">90</div>
-                </div>
-
-
-
-                <div class="result-actions">
-                    <button class="btn-report">Повідомити про помилку</button>
-                    <button class="btn-share">Поділитися</button>
-                    <button class="btn-new-scan" id="new-scan-btn">Нова перевірка</button>
-                </div>
+    <section class="scan-history-section container hidden" id="scan-history-section">
+        <h2>Історія сканувань</h2>
+        <div class="history-list">
             </div>
-        </div>
+    </section>
+
+    <section class="results-section container hidden" id="results-section">
+        <div class="result-card" id="result-card">
+            </div>
     </section>
 
     <section class="how-it-works">
@@ -113,39 +99,40 @@
             </div>
         </div>
     </section>
-    <div class="faq-container">
-        <h2>Поширені запитання</h2>
 
-        <div class="faq-item">
-          <div class="faq-question">Як працює перевірка сторінки?</div>
-          <div class="faq-answer">Ми отримуємо інформацію з сайту через спеціальний запит і відображаємо заголовок, опис та зображення (якщо доступні).</div>
+    <div id="toast-container"></div>
+
+    <section class="faq">
+        <div class="faq-container">
+            <h2>Часті питання</h2>
+            <div class="faq-item">
+                <div class="faq-question">Як працює PhishGuard?</div>
+                <div class="faq-answer">PhishGuard аналізує URL за багатьма параметрами, включаючи доменне ім'я, SSL-сертифікат, контент сторінки та порівнює їх з базами відомих фішингових сайтів.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Наскільки точним є ваш сервіс?</div>
+                <div class="faq-answer">Ми постійно вдосконалюємо наш алгоритм, але 100% точність неможлива. Завжди будьте пильними і довіряйте своїй інтуїції.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Мій сайт був неправильно класифікований, що робити?</div>
+                <div class="faq-answer">Ви можете повідомити про помилку через кнопку "Повідомити про проблему" на сторінці результатів. Ми перевіримо ваш запит.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Чи сервіс безкоштовний?</div>
+                <div class="faq-answer">Так, але у разі великого навантаження можуть бути обмеження або потрібно підключити додаткове API.</div>
+            </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-question">Чи безпечно вводити URL?</div>
-          <div class="faq-answer">Так, ми не зберігаємо введені URL. Вони використовуються лише для обробки й виводу інформації на сторінці.</div>
-        </div>
+        <script>
+            const faqItems = document.querySelectorAll('.faq-item');
 
-        <div class="faq-item">
-          <div class="faq-question">Чи може засіб для перевірки посилань відсканувати весь вебсайт за раз?</div>
-          <div class="faq-answer">Ні, перевірка посилання буде сканувати тільки конкретний URL, який Ви вказали, не весь домен.</div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">Цей сервіс безкоштовний?</div>
-          <div class="faq-answer">Так, але у разі великого навантаження можуть бути обмеження або потрібно підключити додаткове API.</div>
-        </div>
-      </div>
-
-      <script>
-        const faqItems = document.querySelectorAll('.faq-item');
-
-        faqItems.forEach(item => {
-          item.querySelector('.faq-question').addEventListener('click', () => {
-            item.classList.toggle('active');
-          });
-        });
-      </script>
+            faqItems.forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+        </script>
+    </section>
 
     <footer>
         <div class="container">

@@ -13,9 +13,9 @@ MONGO_URI = os.getenv('MONGO_URI')
 SECRET_KEY = os.getenv('SECRET_KEY', 'change-me-in-production')
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
-GOOGLE_SAFE_BROWSING_API_KEY = os.getenv('GOOGLE_SAFE_BROWSING_API_KEY', '')
-PHISHTANK_API_KEY = os.getenv('PHISHTANK_API_KEY', '')
-VIRUSTOTAL_API_KEY = os.getenv('VIRUSTOTAL_API_KEY', '')
+# GOOGLE_SAFE_BROWSING_API_KEY = os.getenv('GOOGLE_SAFE_BROWSING_API_KEY', '') # Якщо не використовуєте, можна видалити
+# PHISHTANK_API_KEY = os.getenv('PHISHTANK_API_KEY', '') # Якщо не використовуєте, можна видалити
+VIRUSTOTAL_API_KEY = os.getenv('VIRUSTOTAL_API_KEY', '') # <-- Залишити лише це визначення і додати порожній рядок як default
 
 LOG_LEVEL = getattr(logging, os.getenv('LOG_LEVEL', 'INFO').upper(), logging.INFO)
 LOG_DIR = os.getenv('LOG_DIR', 'logs')
@@ -31,8 +31,9 @@ RATE_LIMIT_ENABLED = os.getenv('RATE_LIMIT_ENABLED', 'True').lower() in ('true',
 RATE_LIMIT_PER_MINUTE = int(os.getenv('RATE_LIMIT_PER_MINUTE', 60))
 RATE_LIMIT_STORAGE_URL = os.getenv('RATE_LIMIT_STORAGE_URL', 'redis://localhost:6379/1')
 
-PHISHING_THRESHOLD = int(os.getenv('PHISHING_THRESHOLD', 65))
-WARNING_THRESHOLD = int(os.getenv('WARNING_THRESHOLD', 40))
+# Перейменовані пороги для ясності (як ми домовлялися в phish_detector.py)
+PHISHING_THRESHOLD_SCORE = int(os.getenv('PHISHING_THRESHOLD_SCORE', 150)) # Нова назва
+WARNING_THRESHOLD_SCORE = int(os.getenv('WARNING_THRESHOLD_SCORE', 50))   # Нова назва
 
 REQUEST_TIMEOUT = int(os.getenv('REQUEST_TIMEOUT', 10))
 USER_AGENT = os.getenv('USER_AGENT', 'PhishGuard/1.0')

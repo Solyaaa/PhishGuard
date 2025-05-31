@@ -4,3 +4,7 @@ backend/blacklist_dynamic.txt
 config/.env
 *.rdb
 backend/logs/
+
+
+ redis-cli monitor
+ redis-server

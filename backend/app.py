@@ -1,4 +1,3 @@
-
 from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 from pymongo import MongoClient
@@ -12,7 +11,7 @@ from tldextract import extract
 from flask_caching import Cache
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-
+from datetime import datetime
 from config.config import (
     DEBUG, PORT, MONGO_URI, CACHE_TYPE, CACHE_TTL, CACHE_REDIS_URL,
     RATE_LIMIT_ENABLED, RATE_LIMIT_PER_MINUTE, RATE_LIMIT_STORAGE_URL,
@@ -90,7 +89,7 @@ except Exception as e:
     db = None
 
 
-phish_detector = PhishDetector()
+detector = PhishDetector() # Перейменовано phish_detector на detector для узгодженості
 
 @app.before_request
 def log_request_info():
@@ -109,32 +108,42 @@ def log_request_info():
 def index():
     return render_template('index.html')
 
-@app.route('/api/analyze', methods=['POST'])
+@app.route('/api/scan', methods=['POST']) # Змінено маршрут з /api/analyze на /api/scan
 @limiter.limit("10/minute")
-def analyze_url():
+def scan_url(): # Змінено назву функції з analyze_url на scan_url
     try:
         data = request.get_json(force=True)
         url = data.get('url')
         if not url:
-            return jsonify({"error": "URL не вказано"}), 400
+            security_logger.warning("Спроба сканування без URL.")
+            return jsonify({"error": "URL не надано"}), 400
 
-        result = phish_detector.analyze_url(url)
+        client_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+        security_logger.info(f"Запит на сканування від IP: {client_ip} для URL: {url}")
+
+        # ЗМІНА ТУТ: Викликаємо detector.scan_url()
+        scan_results = detector.scan_url(url, client_ip)
 
         if db is not None:
-            scan_result = ScanResult(
-                url=result['url'],
-                domain=result['domain'],
-                checks=result['checks'],
-                final_score=result['final_score'],
-                is_phishing=result['is_phishing'],
-                ip_address=request.remote_addr
+            scan_result_obj = ScanResult(
+                url=scan_results['url'],
+                domain=scan_results['domain'],
+                checks=scan_results['checks'],
+                final_score=scan_results['final_score'],
+                is_phishing=scan_results['is_phishing'],
+                ip_address=scan_results['ip_address'], # Використовуємо IP з результатів сканування
+                status=scan_results['status'] # Додаємо статус
             )
-            db.scan_results.insert_one(scan_result.to_dict())
+            inserted_id = db.scan_results.insert_one(scan_result_obj.to_dict()).inserted_id
+            scan_results['scan_id'] = str(inserted_id) # Додаємо ID до результатів, що повертаються фронтенду
+            logger.info(f"Результати сканування збережено з ID: {inserted_id}")
 
-        return jsonify(result)
+
+        return jsonify(scan_results) # Повертаємо scan_results
+
     except Exception as e:
-        logger.exception("Помилка аналізу URL")
-        return jsonify({"error": "Внутрішня помилка"}), 500
+        logger.exception(f"Помилка при скануванні URL: {url}")
+        return jsonify({"error": "Внутрішня помилка сервера. Будь ласка, спробуйте пізніше.", "details": str(e)}), 500
 
 @app.route('/api/stats', methods=['GET'])
 @cache.cached(timeout=CACHE_TTL)
@@ -171,6 +180,20 @@ def report_problem():
         if not all(k in data for k in ('scan_id', 'feedback_type')):
             return jsonify({"error": "Неповні дані"}), 400
 
+        # Тут можна додати логіку для збереження відгуку користувача,
+        # наприклад, оновлення запису в `scan_results` або створення нового запису.
+        # Для прикладу, оновимо статус та додамо тип відгуку.
+        scan_id = data['scan_id']
+        feedback_type = data['feedback_type']
+        comment = data.get('comment', '')
+
+        if db is not None:
+            db.scan_results.update_one(
+                {'_id': ObjectId(scan_id)},
+                {'$set': {'feedback_type': feedback_type, 'feedback_comment': comment, 'updated_at': datetime.utcnow()}}
+            )
+            logger.info(f"Відгук отримано для scan_id: {scan_id}, тип: {feedback_type}")
+
         return jsonify({"message": "Дякуємо за відгук"})
     except Exception as e:
         logger.exception("Помилка відгуку")
@@ -189,4 +212,3 @@ def internal_error(_):
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0', port=PORT)
-

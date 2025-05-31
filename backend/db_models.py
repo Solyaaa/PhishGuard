@@ -16,7 +16,8 @@ class ScanResult:
                  is_phishing: bool,
                  ip_address: Optional[str] = None,
                  created_at: Optional[datetime] = None,
-                 _id: Optional[Union[str, ObjectId]] = None):
+                 _id: Optional[Union[str, ObjectId]] = None,
+                 status: Optional[str] = None): # <-- ДОДАНО: 'status' параметр
         self.url = url
         self.domain = domain
         self.checks = checks
@@ -25,6 +26,7 @@ class ScanResult:
         self.ip_address = ip_address
         self.created_at = created_at or datetime.utcnow()
         self._id = _id
+        self.status = status # <-- ДОДАНО: збереження статусу
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'ScanResult':
@@ -36,7 +38,8 @@ class ScanResult:
             is_phishing=data['is_phishing'],
             ip_address=data.get('ip_address'),
             created_at=data.get('created_at'),
-            _id=data.get('_id')
+            _id=data.get('_id'),
+            status=data.get('status') # <-- ДОДАНО: отримання статусу
         )
 
     def to_dict(self) -> Dict[str, Any]:
@@ -46,7 +49,8 @@ class ScanResult:
             'checks': self.checks,
             'final_score': self.final_score,
             'is_phishing': self.is_phishing,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'status': self.status # <-- ДОДАНО: збереження статусу в словник
         }
         if self.ip_address:
             result['ip_address'] = self.ip_address

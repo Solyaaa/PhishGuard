@@ -1,0 +1,661 @@
+2026-02-26 15:39:26,391 - ERROR - root - Помилка підключення до MongoDB: localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 69a04d09ae923ce502c26df2, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2026-02-26 15:39:26,392 - INFO - phish_detector - Оновлення чорного списку...
+2026-02-26 15:39:27,260 - INFO - phish_detector - Чорний список оновлено. Завантажено 22092 URL та 943 доменів.
+2026-02-26 15:56:40,520 - ERROR - root - Помилка підключення до MongoDB: localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 69a051135bc6e68da2e2e285, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2026-02-26 15:56:40,685 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 15:58:35,517 - ERROR - root - Помилка підключення до MongoDB: localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 69a051860a8d3d492ac21c99, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2026-02-26 15:58:35,684 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 15:58:35,851 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-02-26 15:58:35,852 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-02-26 15:58:44,143 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 15:58:44,152 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 15:58:44] "GET / HTTP/1.1" 200 -
+2026-02-26 15:58:44,250 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 15:58:44,252 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 15:58:44,263 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 15:58:44] "GET /static/js/script.js HTTP/1.1" 200 -
+2026-02-26 15:58:44,263 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 15:58:44] "GET /static/css/styles.css HTTP/1.1" 200 -
+2026-02-26 15:58:44,599 - INFO - root - Запит від 127.0.0.1 → GET /favicon.ico User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 15:58:44,599 - WARNING - security - 404: 127.0.0.1 намагався отримати /favicon.ico
+2026-02-26 15:58:44,600 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 15:58:44] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-02-26 15:58:53,064 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 15:58:53,070 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://music.youtube.com/
+2026-02-26 15:58:53,217 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 15:58:53,219 - INFO - phish_detector - URL https://music.youtube.com/ не спричинив швидку відмову. Продовжую повний аналіз.
+2026-02-26 15:58:55,269 - INFO - phish_detector - Загальний бал ризику для https://music.youtube.com/ після повного аналізу: 0
+2026-02-26 15:58:55,270 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 15:58:55] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 15:59:24,052 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 15:59:24,055 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://music.youtube.com/
+2026-02-26 15:59:24,204 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 15:59:24,206 - INFO - phish_detector - URL https://music.youtube.com/ не спричинив швидку відмову. Продовжую повний аналіз.
+2026-02-26 15:59:25,538 - INFO - phish_detector - Загальний бал ризику для https://music.youtube.com/ після повного аналізу: 0
+2026-02-26 15:59:25,539 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 15:59:25] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:02:33,736 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: python-requests/2.32.3
+2026-02-26 16:02:33,739 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://music.youtube.com/
+2026-02-26 16:02:33,879 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:02:33,881 - INFO - phish_detector - URL https://music.youtube.com/ не спричинив швидку відмову. Продовжую повний аналіз.
+2026-02-26 16:02:35,389 - INFO - phish_detector - Загальний бал ризику для https://music.youtube.com/ після повного аналізу: 0
+2026-02-26 16:02:35,390 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:02:35] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:02:43,955 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:02:43,957 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:02:43] "GET / HTTP/1.1" 200 -
+2026-02-26 16:02:43,978 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:02:43,979 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:02:43,980 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:02:43] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-02-26 16:02:43,981 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:02:43] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-02-26 16:03:24,716 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: python-requests/2.32.3
+2026-02-26 16:03:24,718 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://balancedcomfort.com
+2026-02-26 16:03:24,929 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:03:24,931 - INFO - phish_detector - URL https://balancedcomfort.com не спричинив швидку відмову. Продовжую повний аналіз.
+2026-02-26 16:03:27,620 - INFO - phish_detector - Загальний бал ризику для https://balancedcomfort.com після повного аналізу: 0
+2026-02-26 16:03:27,620 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:03:27] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:03:41,961 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: python-requests/2.32.3
+2026-02-26 16:03:41,963 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://gghjghjgh.com
+2026-02-26 16:03:41,999 - WARNING - phish_detector - Не вдалося визначити IP-адресу для хоста: gghjghjgh.com
+2026-02-26 16:03:42,133 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:03:42,134 - INFO - phish_detector - URL https://gghjghjgh.com не спричинив швидку відмову. Продовжую повний аналіз.
+2026-02-26 16:03:42,595 - ERROR - phish_detector - Помилка WHOIS запиту для домену gghjghjgh.com: No match for "GGHJGHJGH.COM".
+>>> Last update of whois database: 2026-02-26T14:03:30Z <<<
+
+NOTICE: The expiration date displayed in this record is the date the
+registrar's sponsorship of the domain name registration in the registry is
+currently set to expire. This date does not necessarily reflect the expiration
+date of the domain name registrant's agreement with the sponsoring
+registrar.  Users may consult the sponsoring registrar's Whois database to
+view the registrar's reported date of expiration for this registration.
+
+TERMS OF USE: You are not authorized to access or query our Whois
+database through the use of electronic processes that are high-volume and
+automated except as reasonably necessary to register domain names or
+modify existing registrations; the Data in VeriSign Global Registry
+Services' ("VeriSign") Whois database is provided by VeriSign for
+information purposes only, and to assist persons in obtaining information
+about or related to a domain name registration record. VeriSign does not
+guarantee its accuracy. By submitting a Whois query, you agree to abide
+by the following terms of use: You agree that you may use this Data only
+for lawful purposes and that under no circumstances will you use this Data
+to: (1) allow, enable, or otherwise support the transmission of mass
+unsolicited, commercial advertising or solicitations via e-mail, telephone,
+or facsimile; or (2) enable high volume, automated, electronic processes
+that apply to VeriSign (or its computer systems). The compilation,
+repackaging, dissemination or other use of this Data is expressly
+prohibited without the prior written consent of VeriSign. You agree not to
+use electronic processes that are automated and high-volume to access or
+query the Whois database except as reasonably necessary to register
+domain names or modify existing registrations. VeriSign reserves the right
+to restrict your access to the Whois database in its sole discretion to ensure
+operational stability.  VeriSign may restrict or terminate your access to the
+Whois database for failure to abide by these terms of use. VeriSign
+reserves the right to modify these terms at any time.
+
+The Registry database contains ONLY .COM, .NET, .EDU domains and
+Registrars.
+Traceback (most recent call last):
+  File "/Users/solomia/Desktop/PhishGuard-main/backend/phish_detector.py", line 370, in _check_domain_age
+    w = whois.whois(domain)
+  File "/Users/solomia/PycharmProjects/pandas/.venv/.venv/lib/python3.9/site-packages/whois/__init__.py", line 50, in whois
+    entry = WhoisEntry.load(domain, text)
+  File "/Users/solomia/PycharmProjects/pandas/.venv/.venv/lib/python3.9/site-packages/whois/parser.py", line 194, in load
+    return WhoisCom(domain, text)
+  File "/Users/solomia/PycharmProjects/pandas/.venv/.venv/lib/python3.9/site-packages/whois/parser.py", line 494, in __init__
+    raise PywhoisError(text)
+whois.parser.PywhoisError: No match for "GGHJGHJGH.COM".
+>>> Last update of whois database: 2026-02-26T14:03:30Z <<<
+
+NOTICE: The expiration date displayed in this record is the date the
+registrar's sponsorship of the domain name registration in the registry is
+currently set to expire. This date does not necessarily reflect the expiration
+date of the domain name registrant's agreement with the sponsoring
+registrar.  Users may consult the sponsoring registrar's Whois database to
+view the registrar's reported date of expiration for this registration.
+
+TERMS OF USE: You are not authorized to access or query our Whois
+database through the use of electronic processes that are high-volume and
+automated except as reasonably necessary to register domain names or
+modify existing registrations; the Data in VeriSign Global Registry
+Services' ("VeriSign") Whois database is provided by VeriSign for
+information purposes only, and to assist persons in obtaining information
+about or related to a domain name registration record. VeriSign does not
+guarantee its accuracy. By submitting a Whois query, you agree to abide
+by the following terms of use: You agree that you may use this Data only
+for lawful purposes and that under no circumstances will you use this Data
+to: (1) allow, enable, or otherwise support the transmission of mass
+unsolicited, commercial advertising or solicitations via e-mail, telephone,
+or facsimile; or (2) enable high volume, automated, electronic processes
+that apply to VeriSign (or its computer systems). The compilation,
+repackaging, dissemination or other use of this Data is expressly
+prohibited without the prior written consent of VeriSign. You agree not to
+use electronic processes that are automated and high-volume to access or
+query the Whois database except as reasonably necessary to register
+domain names or modify existing registrations. VeriSign reserves the right
+to restrict your access to the Whois database in its sole discretion to ensure
+operational stability.  VeriSign may restrict or terminate your access to the
+Whois database for failure to abide by these terms of use. VeriSign
+reserves the right to modify these terms at any time.
+
+The Registry database contains ONLY .COM, .NET, .EDU domains and
+Registrars.
+
+2026-02-26 16:03:42,620 - ERROR - phish_detector - Помилка завантаження контенту сторінки https://gghjghjgh.com: HTTPSConnectionPool(host='gghjghjgh.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x137167670>: Failed to resolve 'gghjghjgh.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-02-26 16:03:42,620 - INFO - phish_detector - Загальний бал ризику для https://gghjghjgh.com після повного аналізу: 140
+2026-02-26 16:03:42,621 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:03:42] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:04:47,088 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: python-requests/2.32.3
+2026-02-26 16:04:47,091 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://link-provider.com
+2026-02-26 16:04:47,317 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:04:47,319 - INFO - phish_detector - URL https://link-provider.com не спричинив швидку відмову. Продовжую повний аналіз.
+2026-02-26 16:04:49,618 - INFO - phish_detector - Загальний бал ризику для https://link-provider.com після повного аналізу: 0
+2026-02-26 16:04:49,619 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:04:49] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:04:57,094 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:04:57,096 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://link-provider.com
+2026-02-26 16:04:57,238 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:04:57,239 - INFO - phish_detector - URL https://link-provider.com не спричинив швидку відмову. Продовжую повний аналіз.
+2026-02-26 16:04:59,237 - INFO - phish_detector - Загальний бал ризику для https://link-provider.com після повного аналізу: 0
+2026-02-26 16:04:59,238 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:04:59] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:23:02,631 - ERROR - root - Помилка підключення до MongoDB: localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 69a05741d3956b6dd555e73e, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2026-02-26 16:23:02,798 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:23:02,806 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-02-26 16:23:02,806 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-02-26 16:23:05,118 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:23:05,141 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:23:05] "GET / HTTP/1.1" 200 -
+2026-02-26 16:23:05,187 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:23:05,190 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:23:05,200 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:23:05] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-02-26 16:23:05,200 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:23:05] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-02-26 16:23:09,819 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:23:09,820 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://link-provider.com
+2026-02-26 16:23:10,118 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:23:10,121 - INFO - phish_detector - URL https://link-provider.com не спричинив швидку відмову. Продовжую повний аналіз.
+2026-02-26 16:23:12,508 - INFO - phish_detector - Загальний бал ризику для https://link-provider.com після повного аналізу: 0
+2026-02-26 16:23:12,511 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:23:12] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:23:47,103 - ERROR - root - Помилка підключення до MongoDB: Invalid URI scheme: URI must begin with 'mongodb://' or 'mongodb+srv://'
+2026-02-26 16:23:47,255 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:23:47,440 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-02-26 16:23:47,440 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-02-26 16:23:57,207 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:23:57,228 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:23:57] "GET / HTTP/1.1" 200 -
+2026-02-26 16:23:57,283 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:23:57,293 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:23:57,309 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:23:57] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-02-26 16:23:57,310 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:23:57] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-02-26 16:23:59,870 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:23:59,872 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://link-provider.com
+2026-02-26 16:24:00,006 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:24:17,416 - INFO - phish_detector - URL https://link-provider.com ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).
+2026-02-26 16:24:17,419 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:24:17] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:24:36,824 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:24:36,829 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://music.youtube.com/
+2026-02-26 16:24:37,021 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:24:43,563 - INFO - phish_detector - URL https://music.youtube.com/ не спричинив швидку відмову. Продовжую повний аналіз.
+2026-02-26 16:24:45,154 - INFO - phish_detector - Загальний бал ризику для https://music.youtube.com/ після повного аналізу: 0
+2026-02-26 16:24:45,155 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:24:45] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:25:14,429 - INFO - root - Успішне підключення до MongoDB
+2026-02-26 16:25:14,597 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:25:14,602 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-02-26 16:25:14,602 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-02-26 16:25:18,955 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:25:18,965 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:25:18] "GET / HTTP/1.1" 200 -
+2026-02-26 16:25:19,028 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:25:19,030 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:25:19,038 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:25:19] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-02-26 16:25:19,039 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:25:19] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-02-26 16:25:21,650 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:25:21,652 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://link-provider.com
+2026-02-26 16:25:21,789 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:25:27,712 - INFO - phish_detector - URL https://link-provider.com ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).
+2026-02-26 16:25:27,756 - INFO - root - Результати сканування збережено з ID: 69a057d74d0d8a2d2cb72072
+2026-02-26 16:25:27,759 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:25:27] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:28:41,342 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: python-requests/2.32.3
+2026-02-26 16:28:41,345 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://link-provider.com
+2026-02-26 16:28:41,487 - INFO - phish_detector - Чорний список завантажено з кешу. 22092 URL та 943 доменів.
+2026-02-26 16:28:47,423 - INFO - phish_detector - URL https://link-provider.com ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).
+2026-02-26 16:28:47,467 - INFO - root - Результати сканування збережено з ID: 69a0589f4d0d8a2d2cb72073
+2026-02-26 16:28:47,469 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:28:47] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:48:42,901 - INFO - root - Успішне підключення до MongoDB
+2026-02-26 16:48:42,902 - INFO - phish_detector - Оновлення чорного списку...
+2026-02-26 16:48:43,636 - INFO - phish_detector - Чорний список оновлено. Завантажено 22107 URL та 943 доменів.
+2026-02-26 16:48:43,641 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-02-26 16:48:43,641 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-02-26 16:48:45,985 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:48:45,993 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:48:45] "GET / HTTP/1.1" 200 -
+2026-02-26 16:48:46,093 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:48:46,096 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:48:46,105 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:48:46] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-02-26 16:48:46,105 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:48:46] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-02-26 16:48:55,180 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:48:55,184 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://music.youtube.com/
+2026-02-26 16:48:55,392 - INFO - phish_detector - Чорний список завантажено з кешу. 22107 URL та 943 доменів.
+2026-02-26 16:49:02,417 - INFO - phish_detector - URL https://music.youtube.com/ не спричинив швидку відмову. Продовжую повний аналіз.
+2026-02-26 16:49:03,875 - INFO - phish_detector - Загальний бал ризику для https://music.youtube.com/ після повного аналізу: 0
+2026-02-26 16:49:03,921 - INFO - root - Результати сканування збережено з ID: 69a05d5fceae78bd3cd7a779
+2026-02-26 16:49:03,923 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:49:03] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:49:24,131 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Python/3.9 aiohttp/3.12.15
+2026-02-26 16:49:24,134 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://link-provider.com
+2026-02-26 16:49:24,319 - INFO - phish_detector - Чорний список завантажено з кешу. 22107 URL та 943 доменів.
+2026-02-26 16:49:41,467 - INFO - phish_detector - URL https://link-provider.com ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).
+2026-02-26 16:49:41,508 - INFO - root - Результати сканування збережено з ID: 69a05d85ceae78bd3cd7a77a
+2026-02-26 16:49:41,510 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:49:41] "POST /api/scan HTTP/1.1" 200 -
+2026-02-26 16:49:53,406 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:49:53,408 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:49:53] "GET / HTTP/1.1" 200 -
+2026-02-26 16:49:53,477 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:49:53,478 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:49:53] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-02-26 16:49:53,481 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:49:53,486 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:49:53] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-02-26 16:52:17,516 - INFO - root - Успішне підключення до MongoDB
+2026-02-26 16:52:17,677 - INFO - phish_detector - Чорний список завантажено з кешу. 22107 URL та 943 доменів.
+2026-02-26 16:52:17,829 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-02-26 16:52:17,829 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-02-26 16:52:20,873 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:52:20,887 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:52:20] "GET / HTTP/1.1" 200 -
+2026-02-26 16:52:20,934 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:52:20,935 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-02-26 16:52:20,947 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:52:20] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-02-26 16:52:20,947 - INFO - werkzeug - 127.0.0.1 - - [26/Feb/2026 16:52:20] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-03-10 15:31:06,917 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 15:31:06,918 - INFO - phish_detector - Оновлення чорного списку...
+2026-03-10 15:31:08,230 - INFO - phish_detector - Чорний список оновлено. Завантажено 29658 URL та 1322 доменів.
+2026-03-10 15:31:08,245 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 15:31:08,246 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 15:31:13,202 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:31:13,258 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:31:13] "GET / HTTP/1.1" 200 -
+2026-03-10 15:31:13,376 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:31:13,383 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:31:13,398 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:31:13] "GET /static/js/script.js HTTP/1.1" 200 -
+2026-03-10 15:31:13,398 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:31:13] "GET /static/css/styles.css HTTP/1.1" 200 -
+2026-03-10 15:32:04,225 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Python/3.9 aiohttp/3.12.15
+2026-03-10 15:32:04,228 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://balancedcomfort.com
+2026-03-10 15:32:04,476 - INFO - phish_detector - Чорний список завантажено з кешу. 29658 URL та 1322 доменів.
+2026-03-10 15:32:21,764 - INFO - phish_detector - URL https://balancedcomfort.com ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).
+2026-03-10 15:32:21,813 - INFO - root - Результати сканування збережено з ID: 69b01d65c7a78d0751dbe802
+2026-03-10 15:32:21,816 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:32:21] "POST /api/scan HTTP/1.1" 200 -
+2026-03-10 15:32:31,672 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:32:31,687 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:32:31] "GET / HTTP/1.1" 200 -
+2026-03-10 15:32:31,833 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:32:31,835 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:32:31,837 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:32:31] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-03-10 15:32:31,837 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:32:31] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 15:37:38,957 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 15:37:39,168 - INFO - phish_detector - Чорний список завантажено з кешу. 29658 URL та 1322 доменів.
+2026-03-10 15:37:39,322 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 15:37:39,323 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 15:37:45,561 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:37:45,573 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:37:45] "GET / HTTP/1.1" 200 -
+2026-03-10 15:37:45,695 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:37:45,700 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:37:45,718 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:37:45] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 15:37:45,720 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:37:45] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-03-10 15:38:11,565 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:38:11,566 - INFO - root - Запит від 127.0.0.1 → GET /.well-known/appspecific/com.chrome.devtools.json User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:38:11,567 - WARNING - security - 404: 127.0.0.1 намагався отримати /.well-known/appspecific/com.chrome.devtools.json
+2026-03-10 15:38:11,568 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:38:11] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2026-03-10 15:38:11,568 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:38:11] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-03-10 15:39:32,763 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 15:39:32,973 - INFO - phish_detector - Чорний список завантажено з кешу. 29658 URL та 1322 доменів.
+2026-03-10 15:39:32,980 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 15:39:32,981 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 15:39:42,672 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:39:42,689 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:39:42] "GET / HTTP/1.1" 200 -
+2026-03-10 15:39:42,732 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:39:42,751 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 15:39:42,761 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:39:42] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 15:39:42,763 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 15:39:42] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-03-10 17:03:31,544 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 17:03:31,545 - INFO - phish_detector - Оновлення чорного списку...
+2026-03-10 17:03:32,373 - INFO - phish_detector - Чорний список оновлено. Завантажено 29718 URL та 1327 доменів.
+2026-03-10 17:03:32,519 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 17:03:32,519 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 17:03:35,119 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 17:03:35,145 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 17:03:35] "GET / HTTP/1.1" 200 -
+2026-03-10 17:03:35,381 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 17:03:35,383 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 17:03:35,401 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 17:03:35] "GET /static/css/styles.css HTTP/1.1" 200 -
+2026-03-10 17:03:35,403 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 17:03:35] "GET /static/js/script.js HTTP/1.1" 200 -
+2026-03-10 17:03:49,080 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 17:03:49,084 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://music.youtube.com/
+2026-03-10 17:03:49,264 - INFO - phish_detector - Чорний список завантажено з кешу. 29718 URL та 1327 доменів.
+2026-03-10 17:04:06,337 - INFO - phish_detector - URL https://music.youtube.com/ не спричинив швидку відмову. Продовжую повний аналіз.
+2026-03-10 17:04:07,792 - INFO - phish_detector - Загальний бал ризику для https://music.youtube.com/ після повного аналізу: 0
+2026-03-10 17:04:07,842 - INFO - root - Результати сканування збережено з ID: 69b032e7a249ff9291af8932
+2026-03-10 17:04:07,844 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 17:04:07] "POST /api/scan HTTP/1.1" 200 -
+2026-03-10 17:08:12,765 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 17:08:12,970 - INFO - phish_detector - Чорний список завантажено з кешу. 29718 URL та 1327 доменів.
+2026-03-10 17:08:13,165 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 17:08:13,166 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 17:08:19,570 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 17:08:19,606 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 17:08:19] "GET / HTTP/1.1" 200 -
+2026-03-10 17:08:19,655 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 17:08:19,656 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 17:08:19,665 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 17:08:19] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 17:08:19,665 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 17:08:19] "GET /static/css/styles.css HTTP/1.1" 200 -
+2026-03-10 17:10:39,671 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 17:10:39,882 - INFO - phish_detector - Чорний список завантажено з кешу. 29718 URL та 1327 доменів.
+2026-03-10 17:10:40,034 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 17:10:40,035 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 17:10:41,918 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 17:10:41,940 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 17:10:41] "GET / HTTP/1.1" 200 -
+2026-03-10 17:10:42,029 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 17:10:42,031 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 17:10:42,054 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 17:10:42] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 17:10:42,055 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 17:10:42] "GET /static/css/styles.css HTTP/1.1" 200 -
+2026-03-10 17:10:58,394 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 17:10:58,420 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://ccccccccc
+2026-03-10 17:10:58,768 - WARNING - phish_detector - Не вдалося визначити IP-адресу для хоста: ccccccccc
+2026-03-10 17:10:58,949 - INFO - phish_detector - Чорний список завантажено з кешу. 29718 URL та 1327 доменів.
+2026-03-10 17:10:59,701 - INFO - phish_detector - URL https://ccccccccc не спричинив швидку відмову. Продовжую повний аналіз.
+2026-03-10 17:10:59,732 - ERROR - phish_detector - Помилка завантаження контенту сторінки https://ccccccccc: HTTPSConnectionPool(host='ccccccccc', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1242cf4f0>: Failed to resolve 'ccccccccc' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-03-10 17:10:59,732 - INFO - phish_detector - Загальний бал ризику для https://ccccccccc після повного аналізу: 390
+2026-03-10 17:10:59,791 - INFO - root - Результати сканування збережено з ID: 69b034831b6528f64a76a08d
+2026-03-10 17:10:59,792 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 17:10:59] "POST /api/scan HTTP/1.1" 200 -
+2026-03-10 19:42:13,848 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 19:42:13,848 - INFO - phish_detector - Оновлення чорного списку...
+2026-03-10 19:42:14,695 - INFO - phish_detector - Чорний список оновлено. Завантажено 29780 URL та 1330 доменів.
+2026-03-10 19:42:14,852 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 19:42:14,852 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 19:42:19,096 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:42:19,112 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:42:19] "GET / HTTP/1.1" 200 -
+2026-03-10 19:42:19,156 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:42:19,156 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:42:19,173 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:42:19] "GET /static/js/script.js HTTP/1.1" 200 -
+2026-03-10 19:42:19,174 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:42:19] "GET /static/css/styles.css HTTP/1.1" 200 -
+2026-03-10 19:47:01,934 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 19:47:02,146 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 19:47:02,278 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 19:47:02,278 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 19:47:04,478 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:47:04,487 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:47:04] "GET / HTTP/1.1" 200 -
+2026-03-10 19:47:04,525 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:47:04,526 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:47:04,536 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:47:04] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 19:47:04,536 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:47:04] "GET /static/css/styles.css HTTP/1.1" 200 -
+2026-03-10 19:48:30,881 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 19:48:31,093 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 19:48:31,098 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 19:48:31,098 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 19:48:32,815 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:48:32,836 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:48:32] "GET / HTTP/1.1" 200 -
+2026-03-10 19:48:33,024 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:48:33,027 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:48:33,033 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:48:33] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 19:48:33,033 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:48:33] "GET /static/css/styles.css HTTP/1.1" 200 -
+2026-03-10 19:51:20,796 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 19:51:21,006 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 19:51:21,195 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 19:51:21,195 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 19:51:25,679 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:51:25,700 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:51:25] "GET / HTTP/1.1" 200 -
+2026-03-10 19:51:25,746 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:51:25,750 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:51:25,762 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:51:25] "GET /static/css/styles.css HTTP/1.1" 200 -
+2026-03-10 19:51:25,769 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:51:25] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 19:51:38,553 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:51:38,567 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://link-provider.com
+2026-03-10 19:51:38,855 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 19:51:52,601 - INFO - phish_detector - URL https://link-provider.com ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).
+2026-03-10 19:51:52,647 - INFO - root - Результати сканування збережено з ID: 69b05a387860d385a027cf95
+2026-03-10 19:51:52,649 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:51:52] "POST /api/scan HTTP/1.1" 200 -
+2026-03-10 19:52:16,865 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:52:16,884 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://music.youtube.com/
+2026-03-10 19:52:17,083 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 19:52:23,313 - INFO - phish_detector - URL https://music.youtube.com/ не спричинив швидку відмову. Продовжую повний аналіз.
+2026-03-10 19:52:24,847 - INFO - phish_detector - Загальний бал ризику для https://music.youtube.com/ після повного аналізу: 0
+2026-03-10 19:52:24,885 - INFO - root - Результати сканування збережено з ID: 69b05a587860d385a027cf96
+2026-03-10 19:52:24,887 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:52:24] "POST /api/scan HTTP/1.1" 200 -
+2026-03-10 19:58:04,188 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 19:58:04,399 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 19:58:04,534 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 19:58:04,534 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 19:58:06,308 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:58:06,327 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:58:06] "GET / HTTP/1.1" 200 -
+2026-03-10 19:58:06,393 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:58:06,396 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:58:06,404 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:58:06] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 19:58:06,405 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:58:06] "GET /static/css/styles.css HTTP/1.1" 200 -
+2026-03-10 19:59:28,990 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 19:59:29,198 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 19:59:29,204 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 19:59:29,204 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 19:59:33,075 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:59:33,088 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:59:33] "GET / HTTP/1.1" 200 -
+2026-03-10 19:59:33,260 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:59:33,262 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 19:59:33,272 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:59:33] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 19:59:33,272 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 19:59:33] "GET /static/css/styles.css HTTP/1.1" 200 -
+2026-03-10 20:00:15,320 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:00:15,326 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://v
+2026-03-10 20:00:15,714 - WARNING - phish_detector - Не вдалося визначити IP-адресу для хоста: v
+2026-03-10 20:00:15,891 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 20:00:16,712 - INFO - phish_detector - URL https://v не спричинив швидку відмову. Продовжую повний аналіз.
+2026-03-10 20:00:16,746 - ERROR - phish_detector - Помилка завантаження контенту сторінки https://v: HTTPSConnectionPool(host='v', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x13d2740d0>: Failed to resolve 'v' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-03-10 20:00:16,746 - INFO - phish_detector - Загальний бал ризику для https://v після повного аналізу: 390
+2026-03-10 20:00:16,792 - INFO - root - Результати сканування збережено з ID: 69b05c309f59683dfcabe036
+2026-03-10 20:00:16,793 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:00:16] "POST /api/scan HTTP/1.1" 200 -
+2026-03-10 20:02:50,504 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 20:02:50,714 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 20:02:50,719 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 20:02:50,719 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 20:02:51,850 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:02:51,857 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:02:51] "GET / HTTP/1.1" 200 -
+2026-03-10 20:02:51,910 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:02:51,912 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:02:51,925 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:02:51] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-03-10 20:02:51,927 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:02:51] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 20:13:28,975 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 20:13:29,174 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 20:13:29,307 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 20:13:29,307 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 20:13:30,553 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:13:30,559 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:13:30] "GET / HTTP/1.1" 200 -
+2026-03-10 20:13:30,598 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:13:30,601 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:13:30,609 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:13:30] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-03-10 20:13:30,609 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:13:30] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 20:13:37,718 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Python/3.9 aiohttp/3.12.15
+2026-03-10 20:13:37,721 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://link-provider.com
+2026-03-10 20:13:37,894 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 20:14:06,918 - INFO - phish_detector - URL https://link-provider.com не спричинив швидку відмову. Продовжую повний аналіз.
+2026-03-10 20:14:09,608 - INFO - phish_detector - Загальний бал ризику для https://link-provider.com після повного аналізу: 0
+2026-03-10 20:14:09,656 - INFO - root - Результати сканування збережено з ID: 69b05f71874a9b0c1135cbcc
+2026-03-10 20:14:09,659 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:14:09] "POST /api/scan HTTP/1.1" 200 -
+2026-03-10 20:14:37,461 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Python/3.9 aiohttp/3.12.15
+2026-03-10 20:14:37,465 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://balancedcomfort.com
+2026-03-10 20:14:37,741 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 20:15:06,394 - INFO - phish_detector - URL https://balancedcomfort.com не спричинив швидку відмову. Продовжую повний аналіз.
+2026-03-10 20:15:09,182 - INFO - phish_detector - Загальний бал ризику для https://balancedcomfort.com після повного аналізу: 0
+2026-03-10 20:15:09,220 - INFO - root - Результати сканування збережено з ID: 69b05fad874a9b0c1135cbcd
+2026-03-10 20:15:09,221 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:15:09] "POST /api/scan HTTP/1.1" 200 -
+2026-03-10 20:15:47,570 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 20:15:47,777 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 20:15:47,932 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 20:15:47,932 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 20:15:48,951 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:15:48,966 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:15:48] "GET / HTTP/1.1" 200 -
+2026-03-10 20:15:49,023 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:15:49,025 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:15:49,035 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:15:49] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-03-10 20:15:49,035 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:15:49] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 20:16:39,882 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Python/3.9 aiohttp/3.12.15
+2026-03-10 20:16:39,885 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://balancedcomfort.com
+2026-03-10 20:16:40,058 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 20:16:45,948 - INFO - phish_detector - URL https://balancedcomfort.com ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).
+2026-03-10 20:16:45,992 - INFO - root - Результати сканування збережено з ID: 69b0600d0d04a2e4f5978a19
+2026-03-10 20:16:45,994 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:16:45] "POST /api/scan HTTP/1.1" 200 -
+2026-03-10 20:25:07,617 - INFO - root - Успішне підключення до MongoDB
+2026-03-10 20:25:07,825 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 20:25:07,985 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.103:5001
+2026-03-10 20:25:07,985 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-03-10 20:25:12,010 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:25:12,020 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:25:12] "GET / HTTP/1.1" 200 -
+2026-03-10 20:25:12,094 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:25:12,095 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:25:12,109 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:25:12] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 20:25:12,110 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:25:12] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-03-10 20:26:08,612 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:26:08,633 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://link-provider.com
+2026-03-10 20:26:08,885 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 20:26:26,085 - INFO - phish_detector - URL https://link-provider.com ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).
+2026-03-10 20:26:26,136 - INFO - root - Результати сканування збережено з ID: 69b06252359791cf0360ebac
+2026-03-10 20:26:26,139 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:26:26] "POST /api/scan HTTP/1.1" 200 -
+2026-03-10 20:26:33,153 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:26:33,157 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://music.youtube.com/
+2026-03-10 20:26:33,337 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 20:26:39,465 - INFO - phish_detector - URL https://music.youtube.com/ не спричинив швидку відмову. Продовжую повний аналіз.
+2026-03-10 20:26:41,310 - INFO - phish_detector - Загальний бал ризику для https://music.youtube.com/ після повного аналізу: 0
+2026-03-10 20:26:41,348 - INFO - root - Результати сканування збережено з ID: 69b06261359791cf0360ebad
+2026-03-10 20:26:41,349 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:26:41] "POST /api/scan HTTP/1.1" 200 -
+2026-03-10 20:26:57,862 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:26:57,864 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:26:57] "GET / HTTP/1.1" 200 -
+2026-03-10 20:26:57,892 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:26:57,894 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-03-10 20:26:57,896 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:26:57] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-03-10 20:26:57,897 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:26:57] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-03-10 20:27:32,238 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Python/3.9 aiohttp/3.12.15
+2026-03-10 20:27:32,242 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://balancedcomfort.com
+2026-03-10 20:27:32,428 - INFO - phish_detector - Чорний список завантажено з кешу. 29780 URL та 1330 доменів.
+2026-03-10 20:27:38,450 - INFO - phish_detector - URL https://balancedcomfort.com ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).
+2026-03-10 20:27:38,488 - INFO - root - Результати сканування збережено з ID: 69b0629a359791cf0360ebae
+2026-03-10 20:27:38,490 - INFO - werkzeug - 127.0.0.1 - - [10/Mar/2026 20:27:38] "POST /api/scan HTTP/1.1" 200 -
+2026-04-21 14:05:24,584 - INFO - root - Успішне підключення до MongoDB
+2026-04-21 14:05:24,584 - INFO - phish_detector - Оновлення чорного списку...
+2026-04-21 14:05:25,526 - INFO - phish_detector - Чорний список оновлено. Завантажено 56139 URL та 1786 доменів.
+2026-04-21 14:06:28,448 - INFO - root - Успішне підключення до MongoDB
+2026-04-21 14:06:28,824 - INFO - phish_detector - Чорний список завантажено з кешу. 56139 URL та 1786 доменів.
+2026-04-21 14:06:28,971 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.105:5001
+2026-04-21 14:06:28,971 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-04-21 14:06:32,106 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-04-21 14:06:32,130 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 14:06:32] "GET / HTTP/1.1" 200 -
+2026-04-21 14:06:32,170 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-04-21 14:06:32,173 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-04-21 14:06:32,190 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 14:06:32] "GET /static/css/styles.css HTTP/1.1" 200 -
+2026-04-21 14:06:32,191 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 14:06:32] "GET /static/js/script.js HTTP/1.1" 200 -
+2026-04-21 14:06:38,344 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-04-21 14:06:38,347 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://music.youtube.com/
+2026-04-21 14:06:38,685 - INFO - phish_detector - Чорний список завантажено з кешу. 56139 URL та 1786 доменів.
+2026-04-21 14:06:44,871 - INFO - phish_detector - URL https://music.youtube.com/ не спричинив швидку відмову. Продовжую повний аналіз.
+2026-04-21 14:06:46,751 - INFO - phish_detector - Загальний бал ризику для https://music.youtube.com/ після повного аналізу: 0
+2026-04-21 14:06:46,804 - INFO - root - Результати сканування збережено з ID: 69e75a46d2042a743e2e58f1
+2026-04-21 14:06:46,816 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 14:06:46] "POST /api/scan HTTP/1.1" 200 -
+2026-04-21 14:08:47,691 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-04-21 14:08:47,721 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://model-trozor-web-help.webflow.io/
+2026-04-21 14:08:48,103 - INFO - phish_detector - Чорний список завантажено з кешу. 56139 URL та 1786 доменів.
+2026-04-21 14:08:48,106 - INFO - phish_detector - URL https://model-trozor-web-help.webflow.io/ ідентифіковано як фішинг за чорним списком (ШВИДКА ВІДМОВА).
+2026-04-21 14:08:48,147 - INFO - root - Результати сканування збережено з ID: 69e75ac0d2042a743e2e58f2
+2026-04-21 14:08:48,147 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 14:08:48] "POST /api/scan HTTP/1.1" 200 -
+2026-04-21 14:08:53,912 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-04-21 14:08:53,913 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://link-provider.com
+2026-04-21 14:08:54,320 - INFO - phish_detector - Чорний список завантажено з кешу. 56139 URL та 1786 доменів.
+2026-04-21 14:09:11,078 - INFO - phish_detector - URL https://link-provider.com ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).
+2026-04-21 14:09:11,116 - INFO - root - Результати сканування збережено з ID: 69e75ad7d2042a743e2e58f3
+2026-04-21 14:09:11,119 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 14:09:11] "POST /api/scan HTTP/1.1" 200 -
+2026-04-21 14:09:23,527 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-04-21 14:09:23,539 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://music.youtube.com/
+2026-04-21 14:09:23,882 - INFO - phish_detector - Чорний список завантажено з кешу. 56139 URL та 1786 доменів.
+2026-04-21 14:09:29,953 - INFO - phish_detector - URL https://music.youtube.com/ не спричинив швидку відмову. Продовжую повний аналіз.
+2026-04-21 14:09:31,675 - INFO - phish_detector - Загальний бал ризику для https://music.youtube.com/ після повного аналізу: 0
+2026-04-21 14:09:31,715 - INFO - root - Результати сканування збережено з ID: 69e75aebd2042a743e2e58f4
+2026-04-21 14:09:31,719 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 14:09:31] "POST /api/scan HTTP/1.1" 200 -
+2026-04-21 16:04:12,336 - INFO - root - Запит від 127.0.0.1 → GET / User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-04-21 16:04:12,354 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 16:04:12] "GET / HTTP/1.1" 200 -
+2026-04-21 16:04:12,404 - INFO - root - Запит від 127.0.0.1 → GET /static/css/styles.css User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-04-21 16:04:12,411 - INFO - root - Запит від 127.0.0.1 → GET /static/js/script.js User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-04-21 16:04:12,500 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 16:04:12] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2026-04-21 16:04:12,527 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 16:04:12] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2026-04-21 16:17:34,303 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+2026-04-21 16:17:34,421 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://music.youtube.com/
+2026-04-21 16:17:34,505 - INFO - phish_detector - Оновлення чорного списку...
+2026-04-21 16:17:36,069 - INFO - phish_detector - Чорний список оновлено. Завантажено 56482 URL та 1866 доменів.
+2026-04-21 16:17:42,359 - INFO - phish_detector - URL https://music.youtube.com/ не спричинив швидку відмову. Продовжую повний аналіз.
+2026-04-21 16:17:44,220 - INFO - phish_detector - Загальний бал ризику для https://music.youtube.com/ після повного аналізу: 0
+2026-04-21 16:17:44,283 - INFO - root - Результати сканування збережено з ID: 69e778f8d2042a743e2e58f5
+2026-04-21 16:17:44,285 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 16:17:44] "POST /api/scan HTTP/1.1" 200 -
+2026-04-21 16:24:22,180 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Python/3.9 aiohttp/3.12.15
+2026-04-21 16:24:22,198 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://balancedcomfort.com
+2026-04-21 16:24:22,622 - INFO - phish_detector - Чорний список завантажено з кешу. 56482 URL та 1866 доменів.
+2026-04-21 16:24:40,769 - INFO - phish_detector - URL https://balancedcomfort.com не спричинив швидку відмову. Продовжую повний аналіз.
+2026-04-21 16:24:43,188 - INFO - phish_detector - Загальний бал ризику для https://balancedcomfort.com після повного аналізу: 0
+2026-04-21 16:24:43,229 - INFO - root - Результати сканування збережено з ID: 69e77a9bd2042a743e2e58f6
+2026-04-21 16:24:43,230 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 16:24:43] "POST /api/scan HTTP/1.1" 200 -
+2026-04-21 16:25:14,389 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Python/3.9 aiohttp/3.12.15
+2026-04-21 16:25:14,392 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://balancedcomfort.com
+2026-04-21 16:25:14,720 - INFO - phish_detector - Чорний список завантажено з кешу. 56482 URL та 1866 доменів.
+2026-04-21 16:25:20,835 - INFO - phish_detector - URL https://balancedcomfort.com не спричинив швидку відмову. Продовжую повний аналіз.
+2026-04-21 16:25:23,344 - INFO - phish_detector - Загальний бал ризику для https://balancedcomfort.com після повного аналізу: 0
+2026-04-21 16:25:23,395 - INFO - root - Результати сканування збережено з ID: 69e77ac3d2042a743e2e58f7
+2026-04-21 16:25:23,395 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 16:25:23] "POST /api/scan HTTP/1.1" 200 -
+2026-04-21 16:25:52,819 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Python/3.9 aiohttp/3.12.15
+2026-04-21 16:25:52,822 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://link-provider.com
+2026-04-21 16:25:53,238 - INFO - phish_detector - Чорний список завантажено з кешу. 56482 URL та 1866 доменів.
+2026-04-21 16:26:10,833 - INFO - phish_detector - URL https://link-provider.com ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).
+2026-04-21 16:26:10,876 - INFO - root - Результати сканування збережено з ID: 69e77af2d2042a743e2e58f8
+2026-04-21 16:26:10,878 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 16:26:10] "POST /api/scan HTTP/1.1" 200 -
+2026-04-21 16:26:56,166 - INFO - root - Запит від 127.0.0.1 → POST /api/scan User-Agent: Python/3.9 aiohttp/3.12.15
+2026-04-21 16:26:56,169 - INFO - security - Запит на сканування від IP: 127.0.0.1 для URL: https://balancedcomfort.com
+2026-04-21 16:26:56,506 - INFO - phish_detector - Чорний список завантажено з кешу. 56482 URL та 1866 доменів.
+2026-04-21 16:27:03,408 - INFO - phish_detector - URL https://balancedcomfort.com не спричинив швидку відмову. Продовжую повний аналіз.
+2026-04-21 16:27:05,673 - INFO - phish_detector - Загальний бал ризику для https://balancedcomfort.com після повного аналізу: 0
+2026-04-21 16:27:05,714 - INFO - root - Результати сканування збережено з ID: 69e77b29d2042a743e2e58f9
+2026-04-21 16:27:05,714 - INFO - werkzeug - 127.0.0.1 - - [21/Apr/2026 16:27:05] "POST /api/scan HTTP/1.1" 200 -

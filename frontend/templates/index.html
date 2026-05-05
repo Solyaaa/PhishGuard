@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustyLink - Перевірка фішингових сайтів</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>TrustyLink</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Головна</a></li>
+                    <li><a href="#">Про сервіс</a></li>
+                    <li><a href="#">Статистика</a></li>
+                    <li><a href="#">API</a></li>
+                    <li><a href="#">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Твій цифровий щит: Перевірка лінків та паролів</h1>
+                <p>TrustyLink аналізує безпеку веб-сайтів та перевіряє твої паролі на витоки в реальному часі.</p>
+
+                <div class="search-box">
+    <div class="search-tabs">
+        <button class="tab-btn active" onclick="switchTab('url')">URL</button>
+        <button class="tab-btn" onclick="switchTab('password')">Пароль</button>
+    </div>
+
+    <form id="url-form">
+        <input type="url" id="url-input" placeholder="Введіть URL для перевірки..." required>
+        <button type="submit"><i class="fas fa-search"></i> Перевірити</button>
+    </form>
+
+    <form id="password-form" class="hidden">
+        <input type="password" id="password-input" placeholder="Введіть пароль для перевірки..." required>
+        <button type="submit" style="background: var(--danger-gradient);">
+            <i class="fas fa-key"></i> Перевірити безпеку
+        </button>
+    </form>
+</div>
+                </div>
+
+
+            <div class="bot-promo" style="margin-top: 40px; background: rgba(255,255,255,0.1); border: 1px dashed rgba(255,255,255,0.3); padding: 25px; border-radius: 20px; backdrop-filter: blur(5px);">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+        <div style="background: white; padding: 10px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://t.me/detectVirussssbot" alt="QR Telegram Bot">
+        </div>
+        <div style="text-align: left; max-width: 300px;">
+            <h3 style="color: white; margin-bottom: 10px;">Бот завжди під рукою!</h3>
+            <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 15px;">Скануйте QR-код або переходьте за посиланням, щоб перевіряти лінки прямо в Telegram.</p>
+            <a href="https://t.me/detectVirussssbot" target="_blank" class="button button-primary" style="background: #edafb8; border: none; padding: 10px 20px;">
+                <i class="fab fa-telegram-plane"></i> ПЕРЕЙТИ В БОТ
+            </a>
+        </div>
+    </div>
+</div>
+            <div class="recent-stats">
+    <div class="stat-item">
+        <span class="stat-number" id="total-scans">10,543</span> <span class="stat-label">Перевірених сайтів</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number" id="phishing-detected">2,187</span> <span class="stat-label">Виявлено фішингу</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number" id="detection-rate">90.0%</span> <span class="stat-label">Точність</span>
+    </div>
+</div>
+        </div>
+    </section>
+
+    <section class="scan-history-section container hidden" id="scan-history-section">
+        <h2>Історія сканувань</h2>
+        <div class="history-list">
+            </div>
+    </section>
+
+    <section class="results-section container hidden" id="results-section">
+        <div class="result-card" id="result-card">
+            </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2>Як працює TrustyLink</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>Введіть URL</h3>
+                    <p>Вставте адресу підозрілого сайту для перевірки</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Комплексний аналіз</h3>
+                    <p>Наші алгоритми аналізують URL, домен, SSL-сертифікат та вміст сайту</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Оцінка ризику</h3>
+                    <p>Отримайте детальну оцінку безпеки та інформацію про потенційні загрози</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Прийміть рішення</h3>
+                    <p>На основі результатів вирішіть, чи безпечно відвідувати сайт</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="toast-container"></div>
+
+    <section class="faq">
+        <div class="faq-container">
+            <h2>Часті питання</h2>
+            <div class="faq-item">
+                <div class="faq-question">Як працює TrustyLink?</div>
+                <div class="faq-answer">TrustyLink аналізує URL за багатьма параметрами, включаючи доменне ім'я, SSL-сертифікат, контент сторінки та порівнює їх з базами відомих фішингових сайтів.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Наскільки точним є ваш сервіс?</div>
+                <div class="faq-answer">Ми постійно вдосконалюємо наш алгоритм, але 100% точність неможлива. Завжди будьте пильними і довіряйте своїй інтуїції.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Мій сайт був неправильно класифікований, що робити?</div>
+                <div class="faq-answer">Ви можете повідомити про помилку через кнопку "Повідомити про проблему" на сторінці результатів. Ми перевіримо ваш запит.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Чи сервіс безкоштовний?</div>
+                <div class="faq-answer">Так, але у разі великого навантаження можуть бути обмеження або потрібно підключити додаткове API.</div>
+            </div>
+        </div>
+
+        <script>
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+        </script>
+    </section>
+
+   <footer>
+    <div class="container"> <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-shield-alt"></i>
+                <h2>TrustyLink</h2>
+                <p>Захищаємо користувачів від онлайн-загроз з 2023 року</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TrustyLink. Усі права захищено.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

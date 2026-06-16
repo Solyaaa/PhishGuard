@@ -109,43 +109,38 @@ def log_request_info():
 def index():
     return render_template('index.html')
 
+
 @app.route('/api/scan', methods=['POST'])
 @limiter.limit("10/minute")
 def scan_url():
     try:
         data = request.get_json(force=True)
         url = data.get('url')
-        if not url:
-            security_logger.warning("Спроба сканування без URL.")
-            return jsonify({"error": "URL не надано"}), 400
+        client_ip = request.remote_addr
 
-        client_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
-        security_logger.info(f"Запит на сканування від IP: {client_ip} для URL: {url}")
-
-
+        # Отримуємо результати сканування, включаючи ML-ознаки
         scan_results = detector.scan_url(url, client_ip)
 
         if db is not None:
+            # Створюємо об'єкт моделі зі збереженням ml_features
             scan_result_obj = ScanResult(
                 url=scan_results['url'],
                 domain=scan_results['domain'],
                 checks=scan_results['checks'],
                 final_score=scan_results['final_score'],
                 is_phishing=scan_results['is_phishing'],
+                ml_features=scan_results.get('ml_features'), # Тепер це поле працює
                 ip_address=scan_results['ip_address'],
                 status=scan_results['status']
             )
+            # Зберігаємо в MongoDB
             inserted_id = db.scan_results.insert_one(scan_result_obj.to_dict()).inserted_id
             scan_results['scan_id'] = str(inserted_id)
-            logger.info(f"Результати сканування збережено з ID: {inserted_id}")
-
 
         return jsonify(scan_results)
-
     except Exception as e:
-        logger.exception(f"Помилка при скануванні URL: {url}")
-        return jsonify({"error": "Внутрішня помилка сервера. Будь ласка, спробуйте пізніше.", "details": str(e)}), 500
-
+        logger.exception(f"Помилка при скануванні URL")
+        return jsonify({"error": str(e)}), 500
 @app.route('/api/stats', methods=['GET'])
 @cache.cached(timeout=CACHE_TTL)
 def get_stats():

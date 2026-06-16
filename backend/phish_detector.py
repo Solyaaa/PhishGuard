@@ -3,6 +3,7 @@ import re
 import ssl
 import socket
 import whois
+import math
 import requests
 import tldextract
 import dns.resolver
@@ -31,6 +32,30 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+class FeatureExtractor:
+    """Клас для перетворення URL у числовий вектор ознак для ML."""
+
+    def extract_features(self, url: str) -> Dict[str, float]:
+        parsed = urlparse(url)
+        hostname = parsed.hostname or ""
+        path = parsed.path or ""
+
+        def get_entropy(text):
+            if not text: return 0
+            probs = [text.count(c) / len(text) for c in set(text)]
+            return -sum(p * math.log2(p) for p in probs)
+
+        features = {
+            "url_length": len(url),
+            "hostname_length": len(hostname),
+            "dot_count": url.count('.'),
+            "digit_ratio": sum(c.isdigit() for c in url) / len(url) if len(url) > 0 else 0,
+            "is_https": 1 if parsed.scheme == 'https' else 0,
+            "subdomain_count": max(0, hostname.count('.') - 1),
+            "entropy": round(get_entropy(url), 3),
+            "special_char_count": sum(url.count(c) for c in ['@', '?', '&', '=', '_'])
+        }
+        return features
 class PhishDetector:
     """
     Клас для виявлення фішингових URL за допомогою різних методів,
@@ -45,6 +70,7 @@ class PhishDetector:
         self.timeout = REQUEST_TIMEOUT
 
         self.virustotal_api_key = VIRUSTOTAL_API_KEY
+        self.feature_extractor = FeatureExtractor()  # Ініціалізація ML-модуля
         self.virustotal_api_url_submission = "https://www.virustotal.com/api/v3/urls"
         self.virustotal_api_url_analysis = "https://www.virustotal.com/api/v3/analyses"
         self.virustotal_api_url_info = "https://www.virustotal.com/api/v3/urls"
@@ -205,6 +231,107 @@ class PhishDetector:
                 'weight': weight
             })
         return checks
+
+    def scan_url(self, url: str, client_ip: str) -> Dict[str, Any]:
+        """Об'єднаний метод: повний аналіз + інтелектуальні ознаки ML."""
+        checks = []
+        total_risk_score = 0
+        final_safety_score = 100
+        is_phishing = False
+        domain = ""
+        ip_address = "Не визначено"
+
+        # --- КРОК 1: Вилучення ознак для ML та збереження в екземпляр класу ---
+        # Це те, що ми додали для наукової новизни [cite: 43]
+        self.current_ml_features = self.feature_extractor.extract_features(url)
+
+        try:
+            parsed_url = urlparse(url)
+            if not parsed_url.scheme:
+                url = "https://" + url
+                parsed_url = urlparse(url)
+
+            if not parsed_url.hostname:
+                checks.append({
+                    'description': 'Парсинг URL',
+                    'details': 'Недійсний URL: не вдалося витягти ім\'я хоста.',
+                    'result': 'fail', 'score': 100, 'weight': 10
+                })
+                return self._build_result(url, "Не визначено", checks, 0, True, client_ip)
+
+            extracted = tldextract.extract(url)
+            domain = f"{extracted.domain}.{extracted.suffix}" if extracted.domain and extracted.suffix else parsed_url.hostname
+
+            # Визначення IP-адреси [cite: 184]
+            try:
+                if not re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", parsed_url.hostname):
+                    ip_address = socket.gethostbyname(parsed_url.hostname)
+                else:
+                    ip_address = parsed_url.hostname
+            except socket.gaierror:
+                ip_address = "Не визначено"
+
+            # --- КРОК 2: Додавання ML-перевірки (Ентропія) у список checks ---
+            if self.current_ml_features['entropy'] > 4.2:
+                total_risk_score += 100
+                checks.append({
+                    'description': 'ML: Аналіз ентропії',
+                    'details': f"Висока ентропія URL ({self.current_ml_features['entropy']}). Ознака генерації алгоритмом.",
+                    'result': 'warning', 'score': 100, 'weight': 1
+                })
+
+            # --- КРОК 3: Стандартні перевірки (Сигнатури та Евристика) ---
+            # Перевірка чорних списків [cite: 136, 231]
+            blacklist_checks = self._check_blacklist(url, domain)
+            checks.extend(blacklist_checks)
+            for check in blacklist_checks:
+                if check['result'] == 'fail':
+                    return self._build_result(url, domain, checks, 0, True, client_ip)
+
+            # Перевірка VirusTotal [cite: 136, 182, 235]
+            virustotal_checks = self._check_virustotal(url)
+            checks.extend(virustotal_checks)
+            for check in virustotal_checks:
+                if check['result'] == 'phishing':
+                    return self._build_result(url, domain, checks, 0, True, client_ip)
+                total_risk_score += check['score'] * check.get('weight', 1)
+
+            # Перевірка Google Safe Browsing [cite: 136, 183, 232]
+            google_checks = self._check_google_safe_browsing(url)
+            checks.extend(google_checks)
+            for check in google_checks:
+                if check['result'] == 'phishing':
+                    return self._build_result(url, domain, checks, 0, True, client_ip)
+
+            # Додаткові аналізи [cite: 136]
+            self._check_ssl_certificate(url, checks)  # [cite: 229]
+            self._check_domain_age(domain, checks)  # [cite: 243]
+            self._check_brand_similarity(url, checks)  # [cite: 113, 239]
+            self._check_page_content(url, checks)  # [cite: 209, 246]
+
+            # Підрахунок фінального балу для всіх не-сигнатурних перевірок
+            for check in checks:
+                if check['description'] not in ['Чорний список', 'VirusTotal', 'Google Safe Browsing',
+                                                'ML: Аналіз ентропії']:
+                    if check['result'] in ['fail', 'warning', 'phishing']:
+                        total_risk_score += check['score'] * check.get('weight', 1)
+
+            # --- КРОК 4: Фіналізація результатів ---
+            is_phishing = total_risk_score >= self.phishing_risk_threshold
+            effective_risk = min(total_risk_score, self.MAX_POSSIBLE_RISK_SCORE)
+            final_safety_score = max(0, 100 - int((effective_risk / self.MAX_POSSIBLE_RISK_SCORE) * 100))
+
+            if is_phishing:
+                final_safety_score = min(final_safety_score, 10)
+            elif total_risk_score >= self.warning_risk_threshold:
+                final_safety_score = min(final_safety_score, 60)
+
+        except Exception as e:
+            logger.exception(f"Помилка аналізу {url}: {e}")
+            is_phishing = True
+            final_safety_score = 0
+
+        return self._build_result(url, domain, checks, final_safety_score, is_phishing, ip_address)
 
     def _check_google_safe_browsing(self, url: str) -> List[Dict[str, Any]]:
         """Перевірка URL через Google Safe Browsing API."""
@@ -646,151 +773,153 @@ class PhishDetector:
 
         return previous_row[-1]
 
-    def scan_url(self, url: str, client_ip: str) -> Dict[str, Any]:
-        checks = []
-        total_risk_score = 0
-        final_safety_score = 100
-        is_phishing = False
-        domain = ""
-        ip_address = "Не визначено"
+    # def scan_url(self, url: str, client_ip: str) -> Dict[str, Any]:
+    #     checks = []
+    #     total_risk_score = 0
+    #     final_safety_score = 100
+    #     is_phishing = False
+    #     domain = ""
+    #     ip_address = "Не визначено"
+    #
+    #     try:
+    #         parsed_url = urlparse(url)
+    #
+    #         if not parsed_url.scheme:
+    #
+    #             url = "https://" + url
+    #             parsed_url = urlparse(url)
+    #
+    #         if not parsed_url.hostname:
+    #             checks.append({
+    #                 'description': 'Парсинг URL',
+    #                 'details': 'Недійсний URL: не вдалося витягти ім\'я хоста.',
+    #                 'result': 'fail',
+    #                 'score': 100,
+    #                 'weight': 10
+    #             })
+    #
+    #             return self._build_result(url, "Не визначено", checks, 0, True, client_ip)
+    #
+    #
+    #         extracted = tldextract.extract(url)
+    #         domain = f"{extracted.domain}.{extracted.suffix}" if extracted.domain and extracted.suffix else parsed_url.hostname
+    #
+    #         try:
+    #             # Перевірка, чи не є hostname вже IP адресою
+    #             if not re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", parsed_url.hostname):
+    #                 ip_address = socket.gethostbyname(parsed_url.hostname)
+    #             else:
+    #                 ip_address = parsed_url.hostname
+    #         except socket.gaierror:
+    #             ip_address = "Не визначено"
+    #             logger.warning(f"Не вдалося визначити IP-адресу для хоста: {parsed_url.hostname}")
+    #
+    #         # -----------------------------------------------------------
+    #         # ШВИДКА ВІДМОВА (FAIL-FAST) - ЧОРНІ СПИСКИ та VirusTotal
+    #         # -----------------------------------------------------------
+    #
+    #
+    #         blacklist_checks = self._check_blacklist(url, domain)
+    #         checks.extend(blacklist_checks)
+    #         for check in blacklist_checks:
+    #             if check['result'] == 'fail':
+    #                 total_risk_score += check['score'] * check['weight']
+    #                 is_phishing = True
+    #                 logger.info(f"URL {url} ідентифіковано як фішинг за чорним списком (ШВИДКА ВІДМОВА).")
+    #                 return self._build_result(url, domain, checks, 0, is_phishing, client_ip)
+    #
+    #
+    #         virustotal_checks = self._check_virustotal(url)
+    #         checks.extend(virustotal_checks)
+    #         for check in virustotal_checks:
+    #
+    #             if check['result'] == 'phishing':
+    #                 total_risk_score += check['score'] * check['weight']
+    #                 is_phishing = True
+    #                 logger.info(f"URL {url} ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).")
+    #                 return self._build_result(url, domain, checks, 0, is_phishing, client_ip)
+    #
+    #             elif check['score'] > 0:
+    #                 total_risk_score += check['score'] * check['weight']
+    #
+    #         google_checks = self._check_google_safe_browsing(url)
+    #         checks.extend(google_checks)
+    #         for check in google_checks:
+    #             if check['result'] == 'phishing':
+    #                 total_risk_score += check['score'] * check['weight']
+    #                 is_phishing = True
+    #                 logger.info(f"URL {url} ідентифіковано як фішинг за Google Safe Browsing.")
+    #                 return self._build_result(url, domain, checks, 0, is_phishing, client_ip)
+    #         # -----------------------------------------------------------
+    #         # ПРОДОВЖЕННЯ ПОВНОЇ ПЕРЕВІРКИ, ЯКЩО НЕМАЄ ШВИДКОЇ ВІДМОВИ
+    #         # -----------------------------------------------------------
+    #         logger.info(f"URL {url} не спричинив швидку відмову. Продовжую повний аналіз.")
+    #
+    #
+    #         self._check_ssl_certificate(url, checks)
+    #         self._check_domain_age(domain, checks)
+    #         self._check_brand_similarity(url, checks)
+    #         self._check_page_content(url, checks)
+    #
+    #
+    #         for check in checks:
+    #
+    #             if check['description'] not in ['Чорний список', 'VirusTotal','Google Safe Browsing']:
+    #                 if check['result'] in ['fail', 'warning', 'phishing']:
+    #                     total_risk_score += check['score'] * check.get('weight', 1)
+    #
+    #         logger.info(f"Загальний бал ризику для {url} після повного аналізу: {total_risk_score}")
+    #
+    #
+    #         if total_risk_score >= self.phishing_risk_threshold:
+    #             is_phishing = True
+    #         elif total_risk_score >= self.warning_risk_threshold:
+    #             is_phishing = False
+    #         else:
+    #             is_phishing = False
+    #
+    #
+    #         if self.MAX_POSSIBLE_RISK_SCORE > 0:
+    #
+    #             effective_risk_score = min(total_risk_score, self.MAX_POSSIBLE_RISK_SCORE)
+    #             final_safety_score = max(0, 100 - int((effective_risk_score / self.MAX_POSSIBLE_RISK_SCORE) * 100))
+    #         else:
+    #             final_safety_score = 100
+    #
+    #
+    #         if is_phishing:
+    #             final_safety_score = min(final_safety_score, 10)
+    #         elif total_risk_score >= self.warning_risk_threshold:
+    #             final_safety_score = min(final_safety_score,
+    #                                      60)
+    #
+    #     except Exception as e:
+    #         logger.exception(f"Загальна помилка при аналізі URL {url}: {e}")
+    #         checks.append({
+    #             'description': 'Загальна помилка',
+    #             'details': f'Виникла непередбачена помилка: {str(e)}',
+    #             'result': 'fail',
+    #             'score': 100,
+    #             'weight': 1
+    #         })
+    #         final_safety_score = 0
+    #         is_phishing = True
+    #
+    #     return self._build_result(url, domain, checks, final_safety_score, is_phishing, ip_address)
 
-        try:
-            parsed_url = urlparse(url)
+    def _build_result(self, url: str, domain: str, checks: List[Dict[str, Any]],
+                      final_score: int, is_phishing: bool, ip_address: str) -> Dict[str, Any]:
+        """Формує стандартизований словник результатів з підтримкою ML-ознак."""
 
-            if not parsed_url.scheme:
-
-                url = "https://" + url
-                parsed_url = urlparse(url)
-
-            if not parsed_url.hostname:
-                checks.append({
-                    'description': 'Парсинг URL',
-                    'details': 'Недійсний URL: не вдалося витягти ім\'я хоста.',
-                    'result': 'fail',
-                    'score': 100,
-                    'weight': 10
-                })
-
-                return self._build_result(url, "Не визначено", checks, 0, True, client_ip)
-
-
-            extracted = tldextract.extract(url)
-            domain = f"{extracted.domain}.{extracted.suffix}" if extracted.domain and extracted.suffix else parsed_url.hostname
-
-            try:
-                # Перевірка, чи не є hostname вже IP адресою
-                if not re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", parsed_url.hostname):
-                    ip_address = socket.gethostbyname(parsed_url.hostname)
-                else:
-                    ip_address = parsed_url.hostname
-            except socket.gaierror:
-                ip_address = "Не визначено"
-                logger.warning(f"Не вдалося визначити IP-адресу для хоста: {parsed_url.hostname}")
-
-            # -----------------------------------------------------------
-            # ШВИДКА ВІДМОВА (FAIL-FAST) - ЧОРНІ СПИСКИ та VirusTotal
-            # -----------------------------------------------------------
-
-
-            blacklist_checks = self._check_blacklist(url, domain)
-            checks.extend(blacklist_checks)
-            for check in blacklist_checks:
-                if check['result'] == 'fail':
-                    total_risk_score += check['score'] * check['weight']
-                    is_phishing = True
-                    logger.info(f"URL {url} ідентифіковано як фішинг за чорним списком (ШВИДКА ВІДМОВА).")
-                    return self._build_result(url, domain, checks, 0, is_phishing, client_ip)
-
-
-            virustotal_checks = self._check_virustotal(url)
-            checks.extend(virustotal_checks)
-            for check in virustotal_checks:
-
-                if check['result'] == 'phishing':
-                    total_risk_score += check['score'] * check['weight']
-                    is_phishing = True
-                    logger.info(f"URL {url} ідентифіковано як фішинг за VirusTotal (ШВИДКА ВІДМОВА).")
-                    return self._build_result(url, domain, checks, 0, is_phishing, client_ip)
-
-                elif check['score'] > 0:
-                    total_risk_score += check['score'] * check['weight']
-
-            google_checks = self._check_google_safe_browsing(url)
-            checks.extend(google_checks)
-            for check in google_checks:
-                if check['result'] == 'phishing':
-                    total_risk_score += check['score'] * check['weight']
-                    is_phishing = True
-                    logger.info(f"URL {url} ідентифіковано як фішинг за Google Safe Browsing.")
-                    return self._build_result(url, domain, checks, 0, is_phishing, client_ip)
-            # -----------------------------------------------------------
-            # ПРОДОВЖЕННЯ ПОВНОЇ ПЕРЕВІРКИ, ЯКЩО НЕМАЄ ШВИДКОЇ ВІДМОВИ
-            # -----------------------------------------------------------
-            logger.info(f"URL {url} не спричинив швидку відмову. Продовжую повний аналіз.")
-
-
-            self._check_ssl_certificate(url, checks)
-            self._check_domain_age(domain, checks)
-            self._check_brand_similarity(url, checks)
-            self._check_page_content(url, checks)
-
-
-            for check in checks:
-
-                if check['description'] not in ['Чорний список', 'VirusTotal','Google Safe Browsing']:
-                    if check['result'] in ['fail', 'warning', 'phishing']:
-                        total_risk_score += check['score'] * check.get('weight', 1)
-
-            logger.info(f"Загальний бал ризику для {url} після повного аналізу: {total_risk_score}")
-
-
-            if total_risk_score >= self.phishing_risk_threshold:
-                is_phishing = True
-            elif total_risk_score >= self.warning_risk_threshold:
-                is_phishing = False
-            else:
-                is_phishing = False
-
-
-            if self.MAX_POSSIBLE_RISK_SCORE > 0:
-
-                effective_risk_score = min(total_risk_score, self.MAX_POSSIBLE_RISK_SCORE)
-                final_safety_score = max(0, 100 - int((effective_risk_score / self.MAX_POSSIBLE_RISK_SCORE) * 100))
-            else:
-                final_safety_score = 100
-
-
-            if is_phishing:
-                final_safety_score = min(final_safety_score, 10)
-            elif total_risk_score >= self.warning_risk_threshold:
-                final_safety_score = min(final_safety_score,
-                                         60)
-
-        except Exception as e:
-            logger.exception(f"Загальна помилка при аналізі URL {url}: {e}")
-            checks.append({
-                'description': 'Загальна помилка',
-                'details': f'Виникла непередбачена помилка: {str(e)}',
-                'result': 'fail',
-                'score': 100,
-                'weight': 1
-            })
-            final_safety_score = 0
-            is_phishing = True
-
-        return self._build_result(url, domain, checks, final_safety_score, is_phishing, ip_address)
-
-    def _build_result(self, url: str, domain: str, checks: List[Dict[str, Any]], final_score: int, is_phishing: bool,
-                      ip_address: str) -> Dict[str, Any]:
-        """Формує стандартизований словник результатів."""
+        # Визначаємо статус на основі результатів аналізу [cite: 156]
         status = "safe"
         if is_phishing:
             status = "phishing"
         elif final_score < self.warning_risk_threshold:
             status = "warning"
 
-
-        return {
+        # Створюємо базовий результат [cite: 196]
+        result = {
             'url': url,
             'domain': domain,
             'ip_address': ip_address,
@@ -799,3 +928,10 @@ class PhishDetector:
             'checks': checks,
             'status': status
         }
+
+        # ПЕРЕВІРКА: додаємо ml_features, якщо вони були згенеровані під час сканування [cite: 197]
+        # Це дозволяє передати вектори ознак у app.py для запису в MongoDB [cite: 205, 291]
+        if hasattr(self, 'current_ml_features'):
+            result['ml_features'] = self.current_ml_features
+
+        return result

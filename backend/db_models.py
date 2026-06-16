@@ -15,6 +15,7 @@ class ScanResult:
                  final_score: int,
                  is_phishing: bool,
                  ip_address: Optional[str] = None,
+                 ml_features: Optional[Dict[str, Any]] = None,
                  created_at: Optional[datetime] = None,
                  _id: Optional[Union[str, ObjectId]] = None,
                  status: Optional[str] = None): # <-- ДОДАНО: 'status' параметр
@@ -23,6 +24,7 @@ class ScanResult:
         self.checks = checks
         self.final_score = final_score
         self.is_phishing = is_phishing
+        self.ml_features = ml_features
         self.ip_address = ip_address
         self.created_at = created_at or datetime.utcnow()
         self._id = _id
@@ -49,6 +51,7 @@ class ScanResult:
             'checks': self.checks,
             'final_score': self.final_score,
             'is_phishing': self.is_phishing,
+            'ml_features': self.ml_features,
             'created_at': self.created_at,
             'status': self.status
         }
